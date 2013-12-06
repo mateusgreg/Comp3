@@ -3,6 +3,9 @@
  *
  *  Created on: Nov 29, 2013
  *      Author: mateus
+ *
+ *  Descrição: Implementação de classe que encapsula as principais funções da biblioteca GMP
+ *  utilizadas para manipulação de números inteiros de tamanho arbitrário.
  */
 
 #include <iostream>
