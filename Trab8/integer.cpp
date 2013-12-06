@@ -81,7 +81,7 @@ public:
     return Integer( mpz_get_str(NULL, 10, a) );
   }
 
-  Integer operator() ( unsigned long int x ) {
+  Integer power ( unsigned long int x ) {
     mpz_t a, base;
 
     mpz_init( a );
@@ -90,6 +90,10 @@ public:
     mpz_pow_ui( a, base, x );
 
     return Integer( mpz_get_str(NULL, 10, a) );
+  }
+
+  Integer operator() ( unsigned long int x ) {
+    return power(x);
   }
 
 private:
@@ -128,9 +132,11 @@ int main( int argc, char* argv[] ) {
   cout << "Módulo da Divisão:" << endl;
   cout << a % c << endl << endl;
 
-  cout << "Exponenciação:" << endl;
+  cout << "Exponenciação (método):" << endl;
   cout << a(12345) << endl << endl;
 
+  cout << "Exponenciação (funcao):" << endl;
+  cout << a.power(12345) << endl << endl;
 
   return 0;
 }
