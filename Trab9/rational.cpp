@@ -172,6 +172,15 @@ public:
     return result;
   }
 
+  Rational operator- ( Rational x ) {
+    Rational result;
+
+    result.denominador = mmc(denominador, x.denominador);
+    result.numerador = numerador*(result.denominador/denominador) - x.numerador*(result.denominador/x.denominador);
+
+    return result;
+  }
+
 private:
   Integer numerador;
   Integer denominador;
@@ -183,7 +192,8 @@ ostream& operator << ( ostream& o, const Rational r ) {
 
 
 int main( int argc, char* argv[] ) {
-  Integer a = 798747327497297389275473298748937584695475874_ai;
+  //Integer a = 798747327497297389275473298748937584695475874_ai;
+  Integer a = 30_ai;
   Integer b = 18_ai;
   Integer c = 2_ai;
 
@@ -195,7 +205,10 @@ int main( int argc, char* argv[] ) {
   cout << r2 << endl << endl;
 
   cout << "Soma:" << endl;
-  cout << r1 + r2 << endl;
+  cout << r1 + r2 << endl << endl;
+
+  cout << "Subtracao:" << endl;
+  cout << r1 - r2 << endl << endl;
 
 
   return 0;
