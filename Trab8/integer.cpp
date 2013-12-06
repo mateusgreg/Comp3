@@ -120,22 +120,22 @@ int main( int argc, char* argv[] ) {
   cout << "Soma:" << endl;
   cout << a + b << endl << endl;
 
-  cout << "Subtração:" << endl;
+  cout << "Subtracao:" << endl;
   cout << a - b << endl << endl;
 
-  cout << "Multiplicação:" << endl;
+  cout << "Multiplicacao:" << endl;
   cout << a * c << endl << endl;
 
-  cout << "Divisão:" << endl;
+  cout << "Divisao:" << endl;
   cout << (a * 4_ai) / c << endl << endl;
 
-  cout << "Módulo da Divisão:" << endl;
+  cout << "Modulo da Divisao:" << endl;
   cout << a % c << endl << endl;
 
-  cout << "Exponenciação (método):" << endl;
+  cout << "Exponenciacao (método):" << endl;
   cout << a(12345) << endl << endl;
 
-  cout << "Exponenciação (funcao):" << endl;
+  cout << "Exponenciacao (funcao):" << endl;
   cout << a.power(12345) << endl << endl;
 
   return 0;
