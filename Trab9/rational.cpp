@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <gmpxx.h>
+#include <math.h>
 
 using namespace std;
 
@@ -181,6 +182,42 @@ public:
     return result;
   }
 
+  Rational operator* ( Rational x ) {
+    Rational result;
+
+    result.numerador = numerador * x.numerador;
+    result.denominador = denominador * x.denominador;
+
+    return result;
+  }
+
+  Rational operator/ ( Rational x ) {
+    Rational result;
+
+    result.numerador = numerador * x.denominador;
+    result.denominador = denominador * x.numerador;
+
+    return result;
+  }
+
+  Rational power ( long int x ) {
+    Rational result;
+
+    if (x < 0) {
+      result.numerador = denominador.power(abs(x));
+      result.denominador = numerador.power(abs(x));
+    } else {
+      result.numerador = numerador.power(x);
+      result.denominador = denominador.power(x);
+    }
+
+    return result;
+  }
+
+  Rational operator() ( long int x ) {
+    return power(x);
+  }
+
 private:
   Integer numerador;
   Integer denominador;
@@ -188,6 +225,10 @@ private:
 
 ostream& operator << ( ostream& o, const Rational r ) {
   return r.print( o );
+}
+
+Rational power ( Rational& r, long int x ) {
+  return r.power(x);
 }
 
 
@@ -209,6 +250,21 @@ int main( int argc, char* argv[] ) {
 
   cout << "Subtracao:" << endl;
   cout << r1 - r2 << endl << endl;
+
+  cout << "Multiplicacao:" << endl;
+  cout << r1 * r2 << endl << endl;
+
+  cout << "Divisao:" << endl;
+  cout << r1 / r2 << endl << endl;
+
+  cout << "Exponenciacao (operador):" << endl;
+  cout << r1(-2) << endl << endl;
+
+  cout << "Exponenciacao (metodo):" << endl;
+  cout << r1.power(-2) << endl << endl;
+
+  cout << "Exponenciacao (funcao):" << endl;
+  cout << power(r1, -2) << endl << endl;
 
 
   return 0;
