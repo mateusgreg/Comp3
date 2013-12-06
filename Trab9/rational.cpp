@@ -118,6 +118,18 @@ public:
     return Integer( mpz_get_str(NULL, 10, a) );
   }
 
+  Integer mdc(Integer x) {
+    mpz_t a, b, c;
+
+    mpz_init( a );
+    mpz_init_set_str( b, st.c_str(), 10 );
+    mpz_init_set_str( c, x.st.c_str(), 10 );
+
+    mpz_gcd( a, b, c );
+
+    return Integer( mpz_get_str(NULL, 10, a) );
+  }
+
 private:
   string st;
 };
@@ -141,6 +153,10 @@ Integer mmc(Integer a, Integer b) {
   return a.mmc(b);
 }
 
+Integer mdc(Integer a, Integer b) {
+  return a.mdc(b);
+}
+
 
 
 
@@ -153,6 +169,8 @@ public:
       denominador = den;
     else
       denominador = 1_ai;
+
+    simplifica();
   }
 
   Rational() {
@@ -170,7 +188,7 @@ public:
     result.denominador = mmc(denominador, x.denominador);
     result.numerador = numerador*(result.denominador/denominador) + x.numerador*(result.denominador/x.denominador);
 
-    return result;
+    return result.simplifica();
   }
 
   Rational operator- ( Rational x ) {
@@ -179,7 +197,7 @@ public:
     result.denominador = mmc(denominador, x.denominador);
     result.numerador = numerador*(result.denominador/denominador) - x.numerador*(result.denominador/x.denominador);
 
-    return result;
+    return result.simplifica();
   }
 
   Rational operator* ( Rational x ) {
@@ -188,7 +206,7 @@ public:
     result.numerador = numerador * x.numerador;
     result.denominador = denominador * x.denominador;
 
-    return result;
+    return result.simplifica();
   }
 
   Rational operator/ ( Rational x ) {
@@ -197,7 +215,7 @@ public:
     result.numerador = numerador * x.denominador;
     result.denominador = denominador * x.numerador;
 
-    return result;
+    return result.simplifica();
   }
 
   Rational power ( long int x ) {
@@ -211,7 +229,7 @@ public:
       result.denominador = denominador.power(x);
     }
 
-    return result;
+    return result.simplifica();
   }
 
   Rational operator() ( long int x ) {
@@ -221,6 +239,15 @@ public:
 private:
   Integer numerador;
   Integer denominador;
+
+  Rational simplifica() {
+    Integer fator = mdc(numerador, denominador);
+
+    numerador = numerador/fator;
+    denominador = denominador/fator;
+
+    return *this;
+  }
 };
 
 ostream& operator << ( ostream& o, const Rational r ) {
@@ -230,6 +257,8 @@ ostream& operator << ( ostream& o, const Rational r ) {
 Rational power ( Rational& r, long int x ) {
   return r.power(x);
 }
+
+
 
 
 int main( int argc, char* argv[] ) {
