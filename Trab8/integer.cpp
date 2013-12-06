@@ -111,6 +111,10 @@ Integer operator"" _ai( const char* st ) {
   return Integer( st );
 }
 
+Integer power ( Integer& a, unsigned long int x ) {
+  return a.power(x);
+}
+
 
 int main( int argc, char* argv[] ) {
   Integer a = 798747327497297389275473298748937584695475873_ai;
@@ -132,11 +136,15 @@ int main( int argc, char* argv[] ) {
   cout << "Modulo da Divisao:" << endl;
   cout << a % c << endl << endl;
 
-  cout << "Exponenciacao (método):" << endl;
-  cout << a(12345) << endl << endl;
+  cout << "Exponenciacao (metodo):" << endl;
+  cout << a.power(12345) << endl << endl;
 
   cout << "Exponenciacao (funcao):" << endl;
-  cout << a.power(12345) << endl << endl;
+  cout << power(b, 3) << endl << endl;
+
+  cout << "Exponenciacao (operador):" << endl;
+  cout << a(12345) << endl << endl;
+
 
   return 0;
 }
