@@ -30,6 +30,18 @@ public:
     return Integer( mpz_get_str(NULL, 10, a) );
   }
 
+  Integer operator- ( Integer x ) {
+    mpz_t a, b, c;
+
+    mpz_init( a );
+    mpz_init_set_str( b, st.c_str(), 10 );
+    mpz_init_set_str( c, x.st.c_str(), 10 );
+
+    mpz_sub( a, b, c );
+
+    return Integer( mpz_get_str(NULL, 10, a) );
+  }
+
 private:
   string st;
 };
@@ -48,10 +60,13 @@ Integer operator"" _ai( const char* st ) {
 
 int main( int argc, char* argv[] ) {
   Integer a = 798747327497297389275473298748937584695475873_ai;
-  Integer b = 798747327497297389275473298748937584695475876_ai;
+  Integer b = 798747327497297389275473298748937584695475873_ai;
   
   cout << "Soma:" << endl;
-  cout << a + b << endl;
+  cout << a + b << endl << endl;
+
+  cout << "Subtração:" << endl;
+  cout << a - b << endl << endl;
 
 
   return 0;
