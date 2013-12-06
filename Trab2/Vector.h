@@ -1,4 +1,4 @@
-<pre><p>/*
+/*
  * Vector.h
  *
  *  Created on: Sep 23, 2013

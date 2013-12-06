@@ -1,4 +1,4 @@
-<pre><p>/*
+/*
  * lambda.cpp
  *
  *  Created on: Oct 29, 2013
